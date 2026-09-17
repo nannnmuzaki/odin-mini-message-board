@@ -1,0 +1,24 @@
+{
+  "name": "odin-mini-message-board",
+  "version": "1.0.0",
+  "description": "Built with Express and EJS",
+  "homepage": "https://github.com/nannnmuzaki/odin-mini-message-board#readme",
+  "bugs": {
+    "url": "https://github.com/nannnmuzaki/odin-mini-message-board/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nannnmuzaki/odin-mini-message-board.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "ejs": "^6.0.1",
+    "express": "^5.2.1"
+  }
+}
