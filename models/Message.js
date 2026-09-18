@@ -1,4 +1,4 @@
-import { messages } from "../db/messages"
+import { messages } from "../db/messages.js"
 
 export const Message = {
   findAll() {
