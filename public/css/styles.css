@@ -47,15 +47,17 @@ header {
   border-bottom: 1px solid black;
 }
 
-header > span {
+header > a {
   font-size: 18px;
 
   @media (max-width: 500px) {
     font-size: 16px;
   }
 
+  color: inherit;
   font-weight: bold;
   text-wrap: nowrap;
+  text-decoration: none;
 }
 
 .new-msg-btn {
