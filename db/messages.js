@@ -8,7 +8,7 @@ export const messages = [
   {
     id: crypto.randomUUID(),
     user: "Clash Royale",
-    text: "Hihi heha!",
+    text: "Hihi heha! Hihi heha! Hihi heha! Hihi heha! Hihi heha! Hihi heha! Hihi heha! Hihi heha! Hihi heha! Hihi heha!",
     added: new Date()
   }
 ];

@@ -8,16 +8,18 @@
     <div class="root">
       <%- include("partials/header") %>
       <main>
-        <ul>
-            <% messages.forEach((message) => { %>
-              <li>
-                <span><%= message.id %></span>
-                <strong><%= message.user %></strong>
-                <p><%= message.text %></p>
-                <p><%= message.added %></p>
-              </li>
-              <% }); %>
-        </ul>
+        <div class="messages">
+          <% messages && messages.forEach((message) => { %>
+              <a class="msg-item" href="message/<%= message.id %>">
+                <strong class="msg-author"><%= message.user %></strong>
+                <p class="msg-text"><%= message.text %></p>
+                <p class="msg-date"><%= message.added.toDateString() %></p>
+              </a>
+            <% }); %>
+            <% if (!messages) { %>
+              <p>There's no messages on this board yet! start writing!</p>
+            <% } %>
+        </div>
       </main>
       <%- include("partials/footer") %>
     </div>

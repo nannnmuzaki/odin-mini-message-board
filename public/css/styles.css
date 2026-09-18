@@ -83,3 +83,36 @@ footer {
   padding-block: 1rem;
   border-top: 1px solid black;
 }
+
+.messages {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 1rem;
+  justify-items: center;
+  margin: 0 auto;
+  max-width: 500px;
+}
+
+.msg-item {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  color:inherit;
+  text-decoration: none;
+  border: 1px solid black;
+  width: 100%;
+}
+
+.msg-author {
+  font-size: 16px;
+  margin-bottom: 0.5rem;
+}
+
+.msg-text {
+  text-wrap-style: balance;
+  margin-bottom: 0.5rem;
+}
+
+.msg-date {
+  margin-top: auto;
+}
