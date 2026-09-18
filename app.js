@@ -18,6 +18,11 @@ app.use(express.urlencoded());
 
 app.use('/', messageRouter);
 
+app.use((err, req, res, _next) => {
+  console.error(err);
+  res.status(err.statusCode || 500).send(err.message);
+});
+
 app.listen(PORT, () => {
   console.log(`Listening at localhost:${PORT}`);
 })
