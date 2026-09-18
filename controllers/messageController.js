@@ -4,3 +4,8 @@ export const index = async (req, res) => {
   const messages = Message.findAll();
   res.render('index', { messages: messages });
 }
+
+export const show = async (req, res) => {
+  const message = Message.findById(req.params.id);
+  res.render('message', { message: message });
+}

@@ -12,7 +12,9 @@
           <% messages && messages.forEach((message) => { %>
               <a class="msg-item" href="message/<%= message.id %>">
                 <strong class="msg-author"><%= message.user %></strong>
-                <p class="msg-text"><%= message.text %></p>
+                <p class="msg-text"><%= (message.text.length > 200
+                  ? message.text.slice(0, 200) + "..."
+                  : message.text)  %></p>
                 <p class="msg-date"><%= message.added.toDateString() %></p>
               </a>
             <% }); %>

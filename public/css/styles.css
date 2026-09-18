@@ -90,6 +90,7 @@ footer {
   gap: 1rem;
   justify-items: center;
   margin: 0 auto;
+  width: 100%;
   max-width: 500px;
 }
 
@@ -115,4 +116,16 @@ footer {
 
 .msg-date {
   margin-top: auto;
+}
+
+.message-individual {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  color:inherit;
+  text-decoration: none;
+  border: 1px solid black;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
 }

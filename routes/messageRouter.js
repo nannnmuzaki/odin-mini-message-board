@@ -1,6 +1,7 @@
 import { Router } from "express";
-import { index } from "../controllers/messageController.js";
+import * as messageController from "../controllers/messageController.js";
 
 export const messageRouter = Router();
 
-messageRouter.get('/', index)
+messageRouter.get('/', messageController.index)
+messageRouter.get('/message/:id', messageController.show)
