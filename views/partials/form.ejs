@@ -5,11 +5,11 @@
   <div class="input-wrapper">
     <label for="user">Name</label>
     <input type="text" name="user" id="user" placeholder="Enter your name"
-      value="<%= message?.user && message.user %>">
+      value="<%= message?.user && message.user %>" required>
   </div>
   <div class="input-wrapper">
     <label for="text">Text</label>
-    <textarea name="text" id="text" placeholder="Enter your text"><%= message?.text && message.text %></textarea>
+    <textarea name="text" id="text" placeholder="Enter your text" required><%= message?.text && message.text %></textarea>
   </div>
   <div class="form-btn">
     <button type="reset">Reset</button>
