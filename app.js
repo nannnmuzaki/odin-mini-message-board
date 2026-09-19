@@ -3,7 +3,9 @@ import path from 'node:path';
 import { loadEnvFile } from 'node:process'
 import { messageRouter } from './routes/messageRouter.js';
 
-loadEnvFile()
+try {
+  loadEnvFile();
+} catch (e) {} // oxlint-disable-line
 
 const app = express();
 const PORT = process.env.PORT;
@@ -14,7 +16,7 @@ app.set('view engine', 'ejs');
 const assetsPath = path.join(import.meta.dirname, "public");
 app.use(express.static(assetsPath));
 
-app.use(express.urlencoded());
+app.use(express.urlencoded({ extended: true }));
 
 app.use('/', messageRouter);
 
