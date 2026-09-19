@@ -4,4 +4,5 @@ import * as messageController from "../controllers/messageController.js";
 export const messageRouter = Router();
 
 messageRouter.get('/', messageController.index)
+messageRouter.get('/message/new', messageController.create)
 messageRouter.get('/message/:id', messageController.show)

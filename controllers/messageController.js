@@ -9,3 +9,8 @@ export const show = async (req, res) => {
   const message = Message.findById(req.params.id);
   res.render('message', { message: message });
 }
+
+export const create = async (req, res) => {
+  const formType = "create";
+  res.render('create-message', { formType: formType, message: null });
+}

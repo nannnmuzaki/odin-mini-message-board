@@ -20,6 +20,7 @@ main {
   flex-grow: 1;
   padding-block: 2rem;
   padding-inline: 2rem;
+  align-items: center;
 
   @media (max-width: 500px) {
     padding-block: 1rem;
@@ -86,6 +87,18 @@ footer {
   border-top: 1px solid black;
 }
 
+main > h1 {
+  font-size: 24px;
+
+  @media (max-width: 500px) {
+    font-size: 20px;
+  }
+
+  width: 100%;
+  max-width: 500px;
+  margin-bottom: 1rem;
+}
+
 .messages {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
@@ -130,4 +143,58 @@ footer {
   width: 100%;
   max-width: 500px;
   margin: 0 auto;
+}
+
+.msg-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.4rem;
+  width: 100%;
+  max-width: 500px;
+  padding: 1rem;
+  border: 1px solid black;
+}
+
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.input-wrapper > label {
+  font-size: 16px;
+}
+
+.input-wrapper > input, textarea {
+  padding: 0.3rem;
+  border: 1px solid black;
+}
+
+textarea {
+  min-height: 120px;
+}
+
+.form-btn {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.4rem;
+  margin-top: 1rem;
+}
+
+.form-btn > button {
+  font-family: monospace;
+  font-size: 16px;
+  padding: 0.2rem 0.4rem;
+  background-color: inherit;
+  border: 1px solid black;
+  border-radius: 0;
+  cursor: pointer;
+}
+
+.form-btn > button:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  border: 1px solid black;
+  border-radius: 0;
+  cursor: pointer;
 }
