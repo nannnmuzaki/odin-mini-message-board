@@ -14,7 +14,7 @@ export const Message = {
       id: crypto.randomUUID(),
       user: user,
       text: text,
-      added: new Date()
+      added: new Date().toISOString()
     };
 
     messages.push(newMessage);

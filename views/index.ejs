@@ -16,7 +16,7 @@
                 <p class="msg-text"><%= (message.text.length > 200
                   ? message.text.slice(0, 200) + "..."
                   : message.text)  %></p>
-                <p class="msg-date"><%= message.added.toDateString() %></p>
+                <p class="msg-date"><%= new Date(message.added).toLocaleString(); %></p>
               </a>
             <% }); %>
             <% if (!messages) { %>
