@@ -20,7 +20,7 @@
                 <p class="msg-date"><%= new Date(message.added).toLocaleString(); %></p>
               </a>
             <% }); %>
-            <% if (!messages) { %>
+            <% if (!messages || !(messages.length > 0)) { %>
               <p>There's no messages on this board yet! start writing!</p>
             <% } %>
         </div>
