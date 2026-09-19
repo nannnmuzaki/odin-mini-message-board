@@ -14,3 +14,9 @@ export const create = async (req, res) => {
   const formType = "create";
   res.render('create-message', { formType: formType, message: null });
 }
+
+export const store = async (req, res) => {
+  const { user, text } = req.body;
+  Message.create(user, text);
+  res.redirect('/');
+}
