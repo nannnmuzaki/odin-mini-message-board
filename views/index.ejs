@@ -8,6 +8,7 @@
     <div class="root">
       <%- include("partials/header") %>
       <main>
+        <h1>Message Board</h1>
         <div class="messages">
           <% messages && messages.forEach((message) => { %>
               <a class="msg-item" href="message/<%= message.id %>">
