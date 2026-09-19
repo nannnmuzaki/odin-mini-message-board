@@ -8,10 +8,17 @@
     <div class="root">
       <%- include("partials/header") %>
       <main>
+        <div class="message-heading">
+          <h1>Id: <%= message.id %></h1>
+          <a class="msg-edit-btn" href="/messages/<%= message.id %>/edit">Edit</a>
+          <form class="msg-delete-btn" method="POST" action="/messages/<%= message.id %>/delete">
+            <button type="submit">Delete</button>
+          </form>
+        </div>
         <div class="message-individual">
           <strong class="msg-author"><%= message.user %></strong>
           <p class="msg-text"><%= message.text %></p>
-          <p class="msg-date"><%= message.added.toDateString() %></p>
+          <p class="msg-date"><%= new Date(message.added).toLocaleString() %></p>
         </div>
       </main>
       <%- include("partials/footer") %>

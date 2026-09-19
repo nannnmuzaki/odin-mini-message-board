@@ -19,8 +19,10 @@ app.use(express.urlencoded());
 app.use('/', messageRouter);
 
 app.use((err, req, res, _next) => {
-  console.error(err);
-  res.status(err.statusCode || 500).send(err.message);
+  const errorStatus = err.statusCode || 500;
+  const errorMessage = err.message;
+  res.status(errorStatus);
+  res.render('404', { errorStatus: errorStatus, errorMessage: errorMessage });
 });
 
 app.listen(PORT, () => {

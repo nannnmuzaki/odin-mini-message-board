@@ -1,7 +1,7 @@
 <form class="msg-form" method="POST"
-  action="/message/<%= formType === "update"
-  ? "edit/" + message.id
-  : "new" %>">
+  action="/messages<%= formType === "edit" && message?.id
+  ? "/" + message.id + "/update"
+  : "/new" %>">
   <div class="input-wrapper">
     <label for="user">Name</label>
     <input type="text" name="user" id="user" placeholder="Enter your name"
@@ -9,12 +9,10 @@
   </div>
   <div class="input-wrapper">
     <label for="text">Text</label>
-    <textarea name="text" id="text" placeholder="Enter your text">
-      <%= message?.text && message.text %>
-    </textarea>
+    <textarea name="text" id="text" placeholder="Enter your text"><%= message?.text && message.text %></textarea>
   </div>
   <div class="form-btn">
     <button type="reset">Reset</button>
-    <button type="submit"><%= formType === "update" ? "Update" : "Create" %></button>
+    <button type="submit"><%= formType === "edit" ? "Update" : "Create" %></button>
   </div>
 </form>

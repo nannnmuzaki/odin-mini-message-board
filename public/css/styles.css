@@ -127,6 +127,7 @@ main > h1 {
 .msg-text {
   text-wrap-style: balance;
   margin-bottom: 0.5rem;
+  word-break: break-all;
 }
 
 .msg-date {
@@ -172,6 +173,7 @@ main > h1 {
 }
 
 textarea {
+  field-sizing: content;
   min-height: 120px;
 }
 
@@ -196,5 +198,74 @@ textarea {
   background-color: rgba(0, 0, 0, 0.1);
   border: 1px solid black;
   border-radius: 0;
+  cursor: pointer;
+}
+
+.message-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  width: 100%;
+  max-width: 500px;
+}
+
+.message-heading > h1 {
+  font-size: 18px;
+  word-break: break-all;
+}
+
+.msg-edit-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: fit-content;
+  width: fit-content;
+  margin: auto 0;
+  color: inherit;
+  font-size: 16px;
+  text-decoration: none;
+  padding: 0.4rem 0.8rem;
+  border: 1px solid black;
+  text-wrap: nowrap;
+}
+
+.msg-edit-btn:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  border: 1px solid black;
+  border-radius: 0;
+  cursor: pointer;
+}
+
+.msg-delete-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: fit-content;
+  width: fit-content;
+  margin: auto 0;
+  color: inherit;
+  font-size: 16px;
+  text-decoration: none;
+  padding: 0.4rem 0.8rem;
+  border: 1px solid black;
+  text-wrap: nowrap;
+}
+
+.msg-delete-btn:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.msg-delete-btn > button {
+  font-family: monospace;
+  font-size: 16px;
+  border: none;
+  background-color: transparent;
+}
+
+.msg-delete-btn > button:hover {
+  background-color: transparent;
   cursor: pointer;
 }

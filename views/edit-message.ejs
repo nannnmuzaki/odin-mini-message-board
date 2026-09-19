@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>Edit Message | Odin Message Board</title>
+  </head>
+  <body>
+    <div class="root">
+      <%- include("partials/header") %>
+      <main>
+        <div class="message-heading">
+          <h1>Edit Message</h1>
+          <a class="msg-edit-btn" href="/messages/<%= message.id %>">Cancel</a>
+        </div>
+        <%- include("partials/form") %>
+      </main>
+      <%- include("partials/footer") %>
+    </div>
+  </body>
+</html>
