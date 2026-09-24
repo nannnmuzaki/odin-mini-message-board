@@ -20,7 +20,7 @@
                 <p class="msg-date">Created at: <%= new Date(message.created_at).toLocaleString(); %></p>
                 <p class="msg-date">
                   Updated at: <%= message.updated_at
-                  ? new Date(message.created_at).toLocaleString()
+                  ? new Date(message.updated_at).toLocaleString()
                   : "-"; %>
                 </p>
               </a>
