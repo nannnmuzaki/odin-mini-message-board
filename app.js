@@ -8,7 +8,7 @@ try {
 } catch (e) {} // oxlint-disable-line
 
 const app = express();
-const PORT = process.env.PORT;
+const PORT = process.env.APP_PORT;
 
 app.set('views', path.join(import.meta.dirname, 'views'));
 app.set('view engine', 'ejs');
