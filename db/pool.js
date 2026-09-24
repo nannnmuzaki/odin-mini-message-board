@@ -1,4 +1,8 @@
 import { Pool } from "pg";
+import { loadEnvFile } from "node:process";
+try {
+  loadEnvFile();
+} catch (e) { } // oxlint-disable-line
 
 export const pool = new Pool({
   host: process.env.DB_HOST,

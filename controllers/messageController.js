@@ -2,7 +2,8 @@ import { CustomNotFoundError } from "../errors/CustomNotFoundError.js";
 import { Message } from "../models/Message.js"
 
 export const index = async (req, res) => {
-  const messages = Message.findAll();
+  const messages = await Message.findAll();
+  console.log(messages);
   res.render('index', { messages: messages });
 }
 

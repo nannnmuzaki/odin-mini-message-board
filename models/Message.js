@@ -1,8 +1,10 @@
 import { messages } from "../db/messages.js"
+import { pool } from "../db/pool.js";
 
 export const Message = {
-  findAll() {
-    return messages;
+  async findAll() {
+    const { rows } = await pool.query("SELECT id, username, text, created_at, updated_at FROM messages");
+    return rows;
   },
 
   findById(id) {
