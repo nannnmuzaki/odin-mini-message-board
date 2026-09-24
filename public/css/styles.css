@@ -269,3 +269,13 @@ textarea {
   background-color: transparent;
   cursor: pointer;
 }
+
+.form-errors {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.error-list {
+  list-style-position: inside;
+}

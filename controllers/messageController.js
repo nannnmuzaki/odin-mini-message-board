@@ -1,5 +1,14 @@
 import { CustomNotFoundError } from "../errors/CustomNotFoundError.js";
 import { Message } from "../models/Message.js"
+import { body, matchedData, validationResult } from "express-validator";
+
+const usernameErr = "Username is required and max 255 characters with no space";
+const textErr = "Text is required and max 2000 characters";
+
+const validateMessage = [
+  body("username").isLength({ min: 1, max: 255 }).withMessage(usernameErr),
+  body("text").trim().isLength({ min: 1, max: 2000 }).withMessage(textErr)
+]
 
 export const index = async (req, res) => {
   const messages = await Message.findAll();
@@ -21,11 +30,21 @@ export const create = async (req, res) => {
   res.render('create-message', { formType: formType, message: null });
 }
 
-export const store = async (req, res) => {
-  const { username, text } = req.body;
-  await Message.create(username, text);
-  res.redirect('/');
-}
+
+export const store = [
+  validateMessage,
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      const formType = "create";
+      return res.status(400)
+        .render("create-message",{ formType: formType, errors: errors.array(), message: req.body });
+    }
+    const { username, text } = matchedData(req);
+    await Message.create(username, text);
+    res.redirect('/');
+  }
+]
 
 export const edit = async (req, res) => {
   const formType = "edit";
