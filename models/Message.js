@@ -7,8 +7,12 @@ export const Message = {
     return rows;
   },
 
-  findById(id) {
-    return messages.find(message => message.id === id);
+  async findById(id) {
+    const { rows } = await pool.query(
+      "SELECT id, username, text, created_at, updated_at FROM messages WHERE id = $1",
+      [id]
+    )
+    return rows[0];
   },
 
   create(user, text) {

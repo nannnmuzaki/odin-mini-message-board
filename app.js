@@ -30,6 +30,7 @@ app.use((err, req, res, _next) => {
       errorStatus: errorStatus,
       errorMessage: "The server was unable to complete your request. Please try again later."
     });
+    console.log(err.message)
   } else {
     res.render('error-page', { errorStatus: errorStatus, errorMessage: errorMessage });
   }

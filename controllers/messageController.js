@@ -8,7 +8,7 @@ export const index = async (req, res) => {
 }
 
 export const show = async (req, res) => {
-  const message = Message.findById(req.params.id);
+  const message = await Message.findById(req.params.id);
 
   if (!message) {
     throw new CustomNotFoundError(`No message with id ${req.params.id} is found`);
