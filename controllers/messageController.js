@@ -23,8 +23,8 @@ export const create = async (req, res) => {
 }
 
 export const store = async (req, res) => {
-  const { user, text } = req.body;
-  Message.create(user, text);
+  const { username, text } = req.body;
+  await Message.create(username, text);
   res.redirect('/');
 }
 

@@ -1,30 +1,34 @@
 import { messages } from "../db/messages.js"
 import { pool } from "../db/pool.js";
+import { randomUUIDv7 } from "node:crypto";
 
 export const Message = {
   async findAll() {
-    const { rows } = await pool.query("SELECT id, username, text, created_at, updated_at FROM messages");
+    const { rows } = await pool.query(
+      `SELECT id, username, text, created_at, updated_at
+       FROM messages`
+    );
     return rows;
   },
 
   async findById(id) {
     const { rows } = await pool.query(
-      "SELECT id, username, text, created_at, updated_at FROM messages WHERE id = $1",
+      `SELECT id, username, text, created_at, updated_at
+       FROM messages
+       WHERE id = $1`,
       [id]
     )
     return rows[0];
   },
 
-  create(user, text) {
-    const newMessage = {
-      id: crypto.randomUUID(),
-      user: user,
-      text: text,
-      added: new Date().toISOString()
-    };
+  async create(username, text) {
+    const { rows } = await pool.query(
+      `INSERT INTO messages(id, username, text)
+       VALUES($1, $2, $3) RETURNING *`,
+      [randomUUIDv7(), username, text]
+    )
 
-    messages.push(newMessage);
-    return newMessage;
+    return rows[0];
   },
 
   update(id, updatedMessage) {
