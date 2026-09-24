@@ -45,13 +45,13 @@ export const Message = {
     return rows[0];
   },
 
-  delete(id) {
-    const index = messages.findIndex(message => message.id = id);
-    if (index === -1) return null;
-
-    const deletedData = { ...messages[index] };
-
-    messages.splice(index, 1);
-    return deletedData;
+  async delete(id) {
+    const { rows } = await pool.query(
+      `DELETE FROM messages
+       WHERE id = $1
+       RETURNING *`,
+      [id]
+    );
+    return rows[0];
   }
 }

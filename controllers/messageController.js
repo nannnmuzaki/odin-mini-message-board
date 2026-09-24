@@ -3,7 +3,6 @@ import { Message } from "../models/Message.js"
 
 export const index = async (req, res) => {
   const messages = await Message.findAll();
-  console.log(messages);
   res.render('index', { messages: messages });
 }
 
@@ -56,7 +55,7 @@ export const update = async (req, res) => {
 
 export const destroy = async (req, res) => {
   const id = req.params.id
-  const deletedMessage = Message.delete(id);
+  const deletedMessage = await Message.delete(id);
 
   if (!deletedMessage) {
     throw new CustomNotFoundError(`No message with id ${req.params.id} is found`);
