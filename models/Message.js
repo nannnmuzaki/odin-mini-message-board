@@ -1,42 +1,56 @@
-import { messages } from "../db/messages.js"
+import { pool } from "../db/pool.js";
+import { randomUUIDv7 } from "node:crypto";
 
 export const Message = {
-  findAll() {
-    return messages;
+  async findAll() {
+    const { rows } = await pool.query(
+      `SELECT id, username, text, created_at, updated_at
+       FROM messages`
+    );
+    return rows;
   },
 
-  findById(id) {
-    return messages.find(message => message.id === id);
+  async findById(id) {
+    const { rows } = await pool.query(
+      `SELECT id, username, text, created_at, updated_at
+       FROM messages
+       WHERE id = $1`,
+      [id]
+    )
+    return rows[0];
   },
 
-  create(user, text) {
-    const newMessage = {
-      id: crypto.randomUUID(),
-      user: user,
-      text: text,
-      added: new Date().toISOString()
-    };
+  async create(username, text) {
+    const { rows } = await pool.query(
+      `INSERT INTO messages(id, username, text)
+       VALUES($1, $2, $3)
+       RETURNING *`,
+      [randomUUIDv7(), username, text]
+    )
 
-    messages.push(newMessage);
-    return newMessage;
+    return rows[0];
   },
 
-  update(id, updatedMessage) {
-    const index = messages.findIndex(message => message.id === id);
-    if (index === -1) return null;
+  async update(id, updatedMessage) {
+    const { username, text } = updatedMessage;
+    const { rows } = await pool.query(
+      `UPDATE messages
+       SET username = $2, text = $3, updated_at = NOW()
+       WHERE id = $1
+       RETURNING *`,
+      [id, username, text]
+    )
 
-    messages[index] = { ...messages[index], ...updatedMessage };
-
-    return messages[index];
+    return rows[0];
   },
 
-  delete(id) {
-    const index = messages.findIndex(message => message.id = id);
-    if (index === -1) return null;
-
-    const deletedData = { ...messages[index] };
-
-    messages.splice(index, 1);
-    return deletedData;
+  async delete(id) {
+    const { rows } = await pool.query(
+      `DELETE FROM messages
+       WHERE id = $1
+       RETURNING *`,
+      [id]
+    );
+    return rows[0];
   }
 }

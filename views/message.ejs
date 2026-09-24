@@ -16,9 +16,14 @@
           </form>
         </div>
         <div class="message-individual">
-          <strong class="msg-author"><%= message.user %></strong>
+          <strong class="msg-author"><%= message.username %></strong>
           <p class="msg-text"><%= message.text %></p>
-          <p class="msg-date"><%= new Date(message.added).toLocaleString() %></p>
+          <p class="msg-date">Created at: <%= new Date(message.created_at).toLocaleString() %></p>
+          <p class="msg-date">
+            Updated at: <%= message.updated_at
+            ? new Date(message.updated_at).toLocaleString()
+            : "-"; %>
+          </p>
         </div>
       </main>
       <%- include("partials/footer") %>

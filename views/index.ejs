@@ -13,11 +13,16 @@
         <div class="messages">
           <% messages && messages.forEach((message) => { %>
               <a class="msg-item" href="messages/<%= message.id %>">
-                <strong class="msg-author"><%= message.user %></strong>
+                <strong class="msg-author"><%= message.username %></strong>
                 <p class="msg-text"><%= (message.text.length > 200
                   ? message.text.slice(0, 200) + "..."
                   : message.text)  %></p>
-                <p class="msg-date"><%= new Date(message.added).toLocaleString(); %></p>
+                <p class="msg-date">Created at: <%= new Date(message.created_at).toLocaleString(); %></p>
+                <p class="msg-date">
+                  Updated at: <%= message.updated_at
+                  ? new Date(message.updated_at).toLocaleString()
+                  : "-"; %>
+                </p>
               </a>
             <% }); %>
             <% if (!messages || !(messages.length > 0)) { %>
