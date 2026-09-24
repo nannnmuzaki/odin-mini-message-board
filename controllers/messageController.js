@@ -59,17 +59,27 @@ export const edit = async (req, res) => {
   res.render('edit-message', { formType: formType, message: message });
 }
 
-export const update = async (req, res) => {
-  const id = req.params.id
-  const updatedData = req.body;
-  const updatedMessage = await Message.update(id, updatedData);
+export const update = [
+  validateMessage,
+  async (req, res) => {
+    const id = req.params.id
+    const errors = validationResult(req);
 
-  if (!updatedMessage) {
-    throw new CustomNotFoundError(`No message with id ${req.params.id} is found`);
+    if (!errors.isEmpty()) {
+      const formType = "edit";
+      return res.status(400).render('edit-message', { formType: formType, message: {id, ...req.body}, errors: errors.array() })
+    }
+
+    const updatedData = matchedData(req);
+    const updatedMessage = await Message.update(id, updatedData);
+
+    if (!updatedMessage) {
+      throw new CustomNotFoundError(`No message with id ${req.params.id} is found`);
+    }
+
+    res.redirect('/');
   }
-
-  res.redirect('/');
-}
+]
 
 
 export const destroy = async (req, res) => {

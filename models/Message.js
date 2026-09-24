@@ -1,4 +1,3 @@
-import { messages } from "../db/messages.js"
 import { pool } from "../db/pool.js";
 import { randomUUIDv7 } from "node:crypto";
 
