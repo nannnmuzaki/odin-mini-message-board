@@ -24,20 +24,25 @@ export const Message = {
   async create(username, text) {
     const { rows } = await pool.query(
       `INSERT INTO messages(id, username, text)
-       VALUES($1, $2, $3) RETURNING *`,
+       VALUES($1, $2, $3)
+       RETURNING *`,
       [randomUUIDv7(), username, text]
     )
 
     return rows[0];
   },
 
-  update(id, updatedMessage) {
-    const index = messages.findIndex(message => message.id === id);
-    if (index === -1) return null;
+  async update(id, updatedMessage) {
+    const { username, text } = updatedMessage;
+    const { rows } = await pool.query(
+      `UPDATE messages
+       SET username = $2, text = $3, updated_at = NOW()
+       WHERE id = $1
+       RETURNING *`,
+      [id, username, text]
+    )
 
-    messages[index] = { ...messages[index], ...updatedMessage };
-
-    return messages[index];
+    return rows[0];
   },
 
   delete(id) {

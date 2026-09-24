@@ -31,7 +31,8 @@ export const store = async (req, res) => {
 export const edit = async (req, res) => {
   const formType = "edit";
   const id = req.params.id;
-  const message = Message.findById(id);
+  const message = await Message.findById(id);
+  console.log(message);
 
   if (!message) {
     throw new CustomNotFoundError(`No message with id ${req.params.id} is found`);
@@ -43,7 +44,7 @@ export const edit = async (req, res) => {
 export const update = async (req, res) => {
   const id = req.params.id
   const updatedData = req.body;
-  const updatedMessage = Message.update(id, updatedData);
+  const updatedMessage = await Message.update(id, updatedData);
 
   if (!updatedMessage) {
     throw new CustomNotFoundError(`No message with id ${req.params.id} is found`);
